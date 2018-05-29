@@ -10,7 +10,7 @@ public class Bath {
     private String kanton;
     private String ort;
 
-    public Bath(int id, String name, List<Pool> pools, String kanton, String ort) {
+    public Bath(int id, String name, String kanton, String ort) {
         this.id = id;
         this.name = name;
         this.pools = pools;
