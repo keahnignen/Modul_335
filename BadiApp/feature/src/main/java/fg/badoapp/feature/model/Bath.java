@@ -7,7 +7,16 @@ public class Bath {
     private int id;
     private String name;
     private List<Pool> pools;
-    private int kanton;
+    private String kanton;
+    private String ort;
+
+    public Bath(int id, String name, List<Pool> pools, String kanton, String ort) {
+        this.id = id;
+        this.name = name;
+        this.pools = pools;
+        this.kanton = kanton;
+        this.ort = ort;
+    }
 
     public int getId() {
         return id;
@@ -33,11 +42,11 @@ public class Bath {
         this.pools = pools;
     }
 
-    public int getKanton() {
+    public String getKanton() {
         return kanton;
     }
 
-    public void setKanton(int kanton) {
+    public void setKanton(String kanton) {
         this.kanton = kanton;
     }
 
