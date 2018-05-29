@@ -4,12 +4,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.Iterator;
 
-import ch.bbcag.badiapp.model.Badi;
-import ch.bbcag.badiapp.model.Becken;
 
 public class WieWarmJsonParser {
-    public static Badi createBadiFromJsonString(String badiJsonString) throws JSONException {
-        Badi badi = new Badi();
+    public static Bath createBadiFromJsonString(String badiJsonString) throws JSONException {
+        Bath badi = new Bath();
         JSONObject jsonObj = new JSONObject(badiJsonString);
         badi.setId(Integer.parseInt(jsonObj.getString("badid")));
         badi.setName(jsonObj.getString("badname"));
@@ -20,7 +18,7 @@ public class WieWarmJsonParser {
 
         while (keys.hasNext())
         {
-            Becken becken = new Becken();
+            Pool becken = new Pool();
             String key = (String) keys.next();
             JSONObject subObj = beckenJson.getJSONObject(key);
             becken.setName(subObj.getString("beckenname"));
