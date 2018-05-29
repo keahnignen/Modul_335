@@ -68,4 +68,9 @@ public class Bath {
         return ort;
     }
 
+
+    @Override
+    public String toString() {
+        return name + ort;
+    }
 }

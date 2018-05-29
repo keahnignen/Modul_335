@@ -1,10 +1,18 @@
 package fg.badoapp.feature;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+
+import org.json.JSONException;
+
+import fg.badoapp.feature.model.Bath;
+import fg.badoapp.feature.model.WieWarmJsonParser;
 
 public class BadiDetailsActivity extends AppCompatActivity {
 
@@ -26,4 +34,32 @@ public class BadiDetailsActivity extends AppCompatActivity {
         getBadiTemp(WIE_WARM_API_URL + bathId);
 
     }
+
+    private void getBadiTemp(String url)
+    {
+        final ArrayAdapter<Bath> beckenInfosAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(DownloadManager.Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            Bath badi = WieWarmJsonParser.createBadiFromJsonString(response);
+                            beckenInfosAdapter.addAll(badi.getPools());
+                            ListView badiInfoList = findViewById(R.id.becken_infos);
+                            badiInfoList.setAdapter(beckenInfosAdapter);
+                            progressBar.setVisibility(View.GONE);
+                        } catch (JSONException e) {
+                            generateAlertDialog();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                generateAlertDialog();
+            }
+        });
+        queue.add(stringRequest);
+    }
+
 }
