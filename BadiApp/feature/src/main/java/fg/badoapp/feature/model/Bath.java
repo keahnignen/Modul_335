@@ -10,6 +10,12 @@ public class Bath {
     private String kanton;
     private String ort;
 
+
+    public Bath()
+    {
+
+    }
+
     public Bath(int id, String name, String kanton, String ort) {
         this.id = id;
         this.name = name;
@@ -51,6 +57,15 @@ public class Bath {
     }
 
 
+    public void addBecken(Pool becken) {
+    }
 
+    public void setOrt(String ort) {
+        this.ort = ort;
+    }
+
+    public String getOrt() {
+        return ort;
+    }
 
 }
