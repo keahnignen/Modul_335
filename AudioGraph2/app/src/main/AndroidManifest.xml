@@ -20,9 +20,6 @@
         <activity
             android:name=".RecordActivity"
             android:screenOrientation="landscape">
-
-
-
         </activity>
 
     </application>
