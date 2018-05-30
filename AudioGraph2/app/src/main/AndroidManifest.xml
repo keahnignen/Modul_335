@@ -9,10 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".MainActivity">
+=======
+
+        <activity android:name=".MainActivity"></activity>
+
+        <activity
+            android:name=".RecordActivity"
+            android:screenOrientation="landscape">
+
+>>>>>>> 7ebcfb78e91822fc924695a3990ad5df638c40a5
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -20,5 +29,6 @@
 
         </activity>
     </application>
+
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 </manifest>

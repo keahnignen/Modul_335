@@ -12,8 +12,7 @@ public class RecordActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.record_activity);
 
-        ActionBar actionBar = getActionBar();
-        actionBar.hide();
+
 
         //  stuff that happens on loading this activity
         //  ...
