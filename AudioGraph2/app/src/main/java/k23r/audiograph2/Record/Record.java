@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -67,20 +68,18 @@ public class Record {
     Date d = new Date();
 
     private void processPitch(float pitchInHz) {
-<<<<<<< HEAD
 
-=======
         //TextView pitchText = (TextView) a.findViewById(R.id.lblFrequency);
         //TextView noteText = (TextView) a.findViewById(R.id.lblNote);
 
         //pitchText.setText("" + pitchInHz);
-        Date d = new Date();
-        rec.swag.put(d.toString(), pitchInHz);
-        
->>>>>>> f445fcda0813c24d14a1ad54afd2624733301f63
-        index++;
-        Toast.makeText(a, ""+pitchInHz, Toast.LENGTH_LONG).show();
+        //Date d = new Date();
+        //rec.swag.put(d.toString(), pitchInHz);
+
+        //index++;
+        //Toast.makeText(a, ""+pitchInHz, Toast.LENGTH_LONG).show();
         series.appendData(new DataPoint(new Date(), pitchInHz), false, 100, false);
+
         //rec.swag.add(new FrequencyPoint(new Date(), pitchInHz));
         //bizzli.add(pitchInHz);
     }
@@ -101,6 +100,18 @@ public class Record {
         */
 
 
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
+                    // show normal x values
+                    return super.formatLabel(value, isValueX);
+                } else {
+                    // show currency for y values
+                    return super.formatLabel(value, isValueX) + " €";
+                }
+            }
+        });
         graph.addSeries(series);
     }
 
