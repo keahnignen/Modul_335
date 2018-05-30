@@ -58,10 +58,10 @@ public class Record {
     Date d = new Date();
 
     private void processPitch(float pitchInHz) {
-        TextView pitchText = (TextView) a.findViewById(R.id.lblFrequency);
-        TextView noteText = (TextView) a.findViewById(R.id.lblNote);
+        //TextView pitchText = (TextView) a.findViewById(R.id.lblFrequency);
+        //TextView noteText = (TextView) a.findViewById(R.id.lblNote);
 
-        pitchText.setText("" + pitchInHz);
+        //pitchText.setText("" + pitchInHz);
         Date d = new Date();
         rec.swag.put(d.toString(), pitchInHz);
     }
