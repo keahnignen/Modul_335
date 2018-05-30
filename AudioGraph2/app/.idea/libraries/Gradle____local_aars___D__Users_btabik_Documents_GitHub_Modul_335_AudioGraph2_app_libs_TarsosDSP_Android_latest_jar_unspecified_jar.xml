@@ -4,6 +4,8 @@
       <root url="jar://$PROJECT_DIR$/libs/TarsosDSP-Android-latest.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/TarsosDSP-Android-latest.jar!/" />
+    </SOURCES>
   </library>
 </component>
