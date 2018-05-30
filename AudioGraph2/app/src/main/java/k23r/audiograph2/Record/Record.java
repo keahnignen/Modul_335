@@ -67,7 +67,7 @@ public class Record {
     Date d = new Date();
 
     private void processPitch(float pitchInHz) {
-        
+
         index++;
         Toast.makeText(a, ""+pitchInHz, Toast.LENGTH_LONG).show();
         series.appendData(new DataPoint(new Date(), pitchInHz), false, 100, false);

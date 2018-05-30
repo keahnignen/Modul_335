@@ -11,13 +11,4 @@
         android:layout_width="596dp"
         android:layout_height="261dp" />
 
-    <TextView
-        android:id="@+id/lblFrequency"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="203dp"
-        tools:layout_editor_absoluteY="274dp"
-        android:layout_width="596dp"
-        android:layout_height="261dp"
-        tools:ignore="MissingConstraints" />
-
 </android.support.constraint.ConstraintLayout>
