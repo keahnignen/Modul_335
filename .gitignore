@@ -3,6 +3,7 @@ BadiApp/.idea/caches/build_file_checksums.ser
 BadiApp/.idea/misc.xml
 BadiApp/feature/src/main/java/fg/badoapp/feature/MainActivity.java
 BadiApp/volley/
+<<<<<<< HEAD
 AudioGraph2/app/src/main/java/k23r/audiograph2/MainActivity.java
 AudioGraph2/app/src/main/java/k23r/audiograph2/MainActivity.java
 AudioGraph2/app/src/main/java/k23r/audiograph2/RecordActivity.java
@@ -10,3 +11,7 @@ AudioGraph2/app/src/main/res/layout/record_activity.xml
 AudioGraph2/app/src/main/res/layout/activity_main.xml
 AudioGraph2/app/src/main/java/k23r/audiograph2/RecordActivity.java
 AudioGraph2/app/src/main/java/k23r/audiograph2/MainActivity.java
+=======
+AudioGraph2/app/src/main/AndroidManifest.xml
+>>>>>>> 447c3f99d60f2b88449fe6e2e74d2579f151d5ed
+AudioGraph2/app/src/main/AndroidManifest.xml
