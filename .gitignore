@@ -15,3 +15,7 @@ AudioGraph2/app/src/main/java/k23r/audiograph2/MainActivity.java
 AudioGraph2/app/src/main/AndroidManifest.xml
 >>>>>>> 447c3f99d60f2b88449fe6e2e74d2579f151d5ed
 AudioGraph2/app/src/main/AndroidManifest.xml
+AudioGraph2/app/src/main/java/k23r/audiograph2/MainActivity.java
+AudioGraph2/app/src/main/java/k23r/audiograph2/Record/Record.java
+AudioGraph2/app/src/main/AndroidManifest.xml
+AudioGraph2/app/src/main/java/k23r/audiograph2/Record/Record.java
