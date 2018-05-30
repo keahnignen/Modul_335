@@ -19,13 +19,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        StraitCopyied();
+
+        //StraitCopyied();
     }
 
 
     public void StraitCopyied() {
-        AudioDispatcher dispatcher =
-                AudioDispatcherFactory.fromDefaultMicrophone(22050, 1024, 0);
+        AudioDispatcher dispatcher = AudioDispatcherFactory.fromDefaultMicrophone(44100, 10000, 0);
         PitchDetectionHandler pdh = new PitchDetectionHandler() {
             @Override
             public void handlePitch(PitchDetectionResult res, AudioEvent e) {
@@ -38,8 +38,10 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         };
+
         AudioProcessor pitchProcessor = new PitchProcessor(PitchProcessor.PitchEstimationAlgorithm.FFT_YIN, 22050, 1024, pdh);
-        dispatcher.addAudioProcessor(pitchProcessor);
+        //dispatcher.addAudioProcessor(pitchProcessor);
+
 
         Thread audioThread = new Thread(dispatcher, "Audio Thread");
         audioThread.start();
