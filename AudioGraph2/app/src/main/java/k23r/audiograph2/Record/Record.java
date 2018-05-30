@@ -67,17 +67,12 @@ public class Record {
     Date d = new Date();
 
     private void processPitch(float pitchInHz) {
-<<<<<<< HEAD
-
-=======
         //TextView pitchText = (TextView) a.findViewById(R.id.lblFrequency);
         //TextView noteText = (TextView) a.findViewById(R.id.lblNote);
 
         //pitchText.setText("" + pitchInHz);
         Date d = new Date();
-        rec.swag.put(d.toString(), pitchInHz);
-        
->>>>>>> f445fcda0813c24d14a1ad54afd2624733301f63
+        //rec.swag.put(d.toString(), pitchInHz);
         index++;
         Toast.makeText(a, ""+pitchInHz, Toast.LENGTH_LONG).show();
         series.appendData(new DataPoint(new Date(), pitchInHz), false, 100, false);

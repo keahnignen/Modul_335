@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.WindowManager;
 
+import k23r.audiograph2.Record.Record;
 import k23r.audiograph2.fragments.RecordFragment;
 import k23r.audiograph2.fragments.CollectionFragment;
 
@@ -27,6 +28,8 @@ public class LauncherActivity extends AppCompatActivity
 
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+        Record record = new Record(this);
     }
 
     private void setupFragmentPager(ViewPager viewPager)
