@@ -13,14 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-<<<<<<< HEAD
         <activity
             android:name=".LauncherActivity"
             android:screenOrientation="landscape">
 
-=======
-        <activity android:name=".MainActivity">
->>>>>>> 447c3f99d60f2b88449fe6e2e74d2579f151d5ed
+        </activity>
+        <activity android:name=".MainActivity" android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,14 +26,11 @@
 
         </activity>
 
-<<<<<<< HEAD
-=======
         <activity
             android:name=".RecordActivity"
             android:screenOrientation="landscape">
         </activity>
 
->>>>>>> 447c3f99d60f2b88449fe6e2e74d2579f151d5ed
     </application>
 
 </manifest>

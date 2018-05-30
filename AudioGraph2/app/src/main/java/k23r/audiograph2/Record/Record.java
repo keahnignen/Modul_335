@@ -4,7 +4,13 @@ import android.app.Activity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import be.tarsos.dsp.AudioDispatcher;
 import be.tarsos.dsp.AudioEvent;
@@ -23,8 +29,11 @@ public class Record {
     public Record(Activity a)
     {
         this.a = a;
-        AudioPermission ap = new AudioPermission(a, this);
         rec = new Recordation();
+        display();
+        AudioPermission ap = new AudioPermission(a, this);
+
+
     }
 
 
@@ -58,14 +67,32 @@ public class Record {
     Date d = new Date();
 
     private void processPitch(float pitchInHz) {
-        TextView pitchText = (TextView) a.findViewById(R.id.lblFrequency);
-        TextView noteText = (TextView) a.findViewById(R.id.lblNote);
-
-        pitchText.setText("" + pitchInHz);
-        Date d = new Date();
-        rec.swag.put(d.toString(), pitchInHz);
+        
+        index++;
+        Toast.makeText(a, ""+pitchInHz, Toast.LENGTH_LONG).show();
+        series.appendData(new DataPoint(new Date(), pitchInHz), false, 100, false);
+        //rec.swag.add(new FrequencyPoint(new Date(), pitchInHz));
+        //bizzli.add(pitchInHz);
     }
 
+    private List<Float> bizzli =  new ArrayList<>();
+
+    private int index= 0;
+
+    private LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
+
+    private void display() {
+        GraphView graph = (GraphView) a.findViewById(R.id.graph);
+
+        /*
+        for (FrequencyPoint fp: rec.swag) {
+            series.appendData(new DataPoint(fp.date, fp.frequency), true, rec.swag.size(), true);
+        }
+        */
+
+
+        graph.addSeries(series);
+    }
 
 
 }
