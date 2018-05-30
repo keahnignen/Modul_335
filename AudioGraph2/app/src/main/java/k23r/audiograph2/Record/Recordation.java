@@ -1,12 +1,21 @@
 package k23r.audiograph2.Record;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Recordation {
+
+    public Recordation()
+    {
+
+    }
+
     private String name;
 
-    public Map<String, Float> swag = new HashMap<String, Float>();
+    public List<FrequencyPoint> swag = new ArrayList<>();
 
     public String getName() {
         return name;

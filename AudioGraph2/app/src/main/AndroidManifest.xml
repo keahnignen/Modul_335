@@ -17,10 +17,24 @@
             android:name=".LauncherActivity"
             android:screenOrientation="landscape">
 
+<<<<<<< HEAD
+=======
+        </activity>
+        <activity android:name=".MainActivity" android:screenOrientation="landscape">
+>>>>>>> 4463789065e9913dc0648c46607c513825f1e959
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+<<<<<<< HEAD
+=======
+
+        </activity>
+
+        <activity
+            android:name=".RecordActivity"
+            android:screenOrientation="landscape">
+>>>>>>> 4463789065e9913dc0648c46607c513825f1e959
         </activity>
 
     </application>
