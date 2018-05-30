@@ -6,3 +6,7 @@ BadiApp/volley/
 AudioGraph2/app/src/main/java/k23r/audiograph2/MainActivity.java
 AudioGraph2/app/src/main/java/k23r/audiograph2/MainActivity.java
 AudioGraph2/app/src/main/java/k23r/audiograph2/RecordActivity.java
+AudioGraph2/app/src/main/res/layout/record_activity.xml
+AudioGraph2/app/src/main/res/layout/activity_main.xml
+AudioGraph2/app/src/main/java/k23r/audiograph2/RecordActivity.java
+AudioGraph2/app/src/main/java/k23r/audiograph2/MainActivity.java
