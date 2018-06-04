@@ -1,5 +1,6 @@
 package k23r.audiograph2.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,11 +14,15 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.Series;
 
+import java.util.Date;
+
 import k23r.audiograph2.R;
+import k23r.audiograph2.Record.RecordView;
 
 public class RecordFragment extends Fragment
 {
     private boolean createtAndFirstTime = false;
+
 
     public RecordFragment() {}
 
@@ -26,9 +31,14 @@ public class RecordFragment extends Fragment
     {
 
         createtAndFirstTime = true;
+
+
+
+
         return(inflater.inflate(R.layout.record_fragment, container, false));
     }
 
+    public LineGraphSeries<DataPoint> badSeries = new LineGraphSeries<DataPoint>();
     public LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
 
 
@@ -42,6 +52,7 @@ public class RecordFragment extends Fragment
         }
         */
 
+        /*
         graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
 
             @Override
@@ -55,6 +66,7 @@ public class RecordFragment extends Fragment
                 }
             }
         });
+        */
 
 
          /*
@@ -65,24 +77,46 @@ public class RecordFragment extends Fragment
         graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(nf, nf));
 */
 
-
+/*
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphView);
         staticLabelsFormatter.setHorizontalLabels(new String[] {"old", "middle", "new"});
         staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
         graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
+*/
         graphView.addSeries(series);
     }
 
-    public void addDatapoint(DataPoint dataPoint, boolean b, int i, boolean b1) {
-      series.appendData(dataPoint, b, i, b1);
+    public void addDatapoint(float frequency, boolean b, int i, boolean b1) {
+
+
+        if (frequency < 1000 && frequency > 500 )
+        {
+            series.appendData(new DataPoint(new Date(), frequency), false, 50, false);
+
+        }
+        else
+        {
+            badSeries.appendData(new DataPoint(new Date(), frequency), false, 100, false);
+        }
+
+
 
       if (createtAndFirstTime)
       {
           createtAndFirstTime = false;
+          //View v = this.getView().findViewById(R.id.view);
+
+          //series.setDrawBackground(true);
+          //badSeries.setDrawBackground(true);
+          badSeries.setColor(Color.RED);
+          series.setColor(Color.GREEN);
           SetGraph();
           GraphView graphView = (GraphView) getView().findViewById(R.id.graph);
           graphView.addSeries(series);
+          graphView.addSeries(badSeries);
       }
     }
+
+
 }
