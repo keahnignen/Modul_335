@@ -1,10 +1,8 @@
 package k23r.audiograph2.Record;
 
 import android.app.Activity;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -19,32 +17,33 @@ import be.tarsos.dsp.io.android.AudioDispatcherFactory;
 import be.tarsos.dsp.pitch.PitchDetectionHandler;
 import be.tarsos.dsp.pitch.PitchDetectionResult;
 import be.tarsos.dsp.pitch.PitchProcessor;
-import k23r.audiograph2.R;
+import k23r.audiograph2.fragments.RecordFragment;
 
 public class Record {
 
-    private Activity a;
+    private RecordFragment fragment;
+    private Activity activity;
     private Recordation rec;
 
-    public Record(Activity a)
+    public Record(RecordFragment a, Activity ac)
     {
-        this.a = a;
+        this.activity = ac;
+        this.fragment = a;
         rec = new Recordation();
         display();
-        AudioPermission ap = new AudioPermission(a, this);
+        AudioPermission ap = new AudioPermission(ac, this);
 
 
     }
 
 
     void StraitCopyied() {
-        Toast.makeText(a, "Swag2", Toast.LENGTH_LONG).show();
         AudioDispatcher dispatcher = AudioDispatcherFactory.fromDefaultMicrophone(22050, 1024, 0);
         PitchDetectionHandler pdh = new PitchDetectionHandler() {
             @Override
             public void handlePitch(PitchDetectionResult res, AudioEvent e) {
                 final float pitchInHz = res.getPitch();
-                a.runOnUiThread(new Runnable() {
+                activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         processPitch(pitchInHz);
@@ -58,7 +57,6 @@ public class Record {
 
 
         Thread audioThread = new Thread(dispatcher, "Audio Thread");
-        Toast.makeText(a, "Swag", Toast.LENGTH_LONG).show();
         audioThread.start();
 
     }
@@ -67,14 +65,13 @@ public class Record {
     Date d = new Date();
 
     private void processPitch(float pitchInHz) {
-        //TextView pitchText = (TextView) a.findViewById(R.id.lblFrequency);
-        //TextView noteText = (TextView) a.findViewById(R.id.lblNote);
+        //TextView pitchText = (TextView) fragment.findViewById(R.id.lblFrequency);
+        //TextView noteText = (TextView) fragment.findViewById(R.id.lblNote);
 
         //pitchText.setText("" + pitchInHz);
         Date d = new Date();
         //rec.swag.put(d.toString(), pitchInHz);
         index++;
-        Toast.makeText(a, ""+pitchInHz, Toast.LENGTH_LONG).show();
         series.appendData(new DataPoint(new Date(), pitchInHz), false, 100, false);
         //rec.swag.add(new FrequencyPoint(new Date(), pitchInHz));
         //bizzli.add(pitchInHz);
@@ -87,17 +84,10 @@ public class Record {
     private LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
 
     private void display() {
-        GraphView graph = (GraphView) a.findViewById(R.id.graph);
-
-        /*
-        for (FrequencyPoint fp: rec.swag) {
-            series.appendData(new DataPoint(fp.date, fp.frequency), true, rec.swag.size(), true);
-        }
-        */
-
-
-        graph.addSeries(series);
+        fragment.SetGraph(series);
     }
+
+
 
 
 }
