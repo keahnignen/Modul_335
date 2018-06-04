@@ -1,13 +1,12 @@
 package k23r.audiograph2;
 
-import android.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.TabLayout;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.WindowManager;
 
 import k23r.audiograph2.Record.Record;
 import k23r.audiograph2.fragments.RecordFragment;
@@ -18,6 +17,10 @@ public class LauncherActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private RecordFragment fragment;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter recycleViewAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,9 +36,14 @@ public class LauncherActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(viewPager);
 
         View view = this.findViewById(R.id.graph);
-
-
         Record record = new Record(fragment, this);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recycleViewAdapter = new RecycleViewAdapter();
     }
 
 
