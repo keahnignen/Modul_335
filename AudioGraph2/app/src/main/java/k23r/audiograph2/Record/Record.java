@@ -30,10 +30,7 @@ public class Record {
         this.activity = ac;
         this.fragment = a;
         rec = new Recordation();
-        display();
         AudioPermission ap = new AudioPermission(ac, this);
-
-
     }
 
 
@@ -72,7 +69,7 @@ public class Record {
         Date d = new Date();
         //rec.swag.put(d.toString(), pitchInHz);
         index++;
-        series.appendData(new DataPoint(new Date(), pitchInHz), false, 100, false);
+        fragment.addDatapoint(new DataPoint(new Date(), pitchInHz), false, 100, false);
         //rec.swag.add(new FrequencyPoint(new Date(), pitchInHz));
         //bizzli.add(pitchInHz);
     }
@@ -80,12 +77,6 @@ public class Record {
     private List<Float> bizzli =  new ArrayList<>();
 
     private int index= 0;
-
-    private LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
-
-    private void display() {
-        fragment.SetGraph(series);
-    }
 
 
 
