@@ -1,5 +1,10 @@
 package k23r.audiograph2;
 
+<<<<<<< HEAD
+=======
+import android.app.Fragment;
+import android.content.Intent;
+>>>>>>> db2e6bea4fae9698740c8f11f71b1e40848b2d73
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.design.widget.TabLayout;
@@ -9,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import k23r.audiograph2.Record.Record;
+import k23r.audiograph2.Record.RecordView;
 import k23r.audiograph2.fragments.RecordFragment;
 import k23r.audiograph2.fragments.CollectionFragment;
 
@@ -27,10 +33,17 @@ public class LauncherActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.launcher_activity);
+        Intent intent = new Intent(this, OtherBLa.class);
+        startActivity(intent);
 
+        //setContentView(R.layout.launcher_activity);
+
+
+
+        /*
         viewPager = findViewById(R.id.viewpager);
         setupFragmentPager(viewPager);
+
 
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -41,9 +54,15 @@ public class LauncherActivity extends AppCompatActivity
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
+<<<<<<< HEAD
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recycleViewAdapter = new RecycleViewAdapter();
+=======
+
+        Record record = new Record(fragment, this);
+        */
+>>>>>>> db2e6bea4fae9698740c8f11f71b1e40848b2d73
     }
 
 
