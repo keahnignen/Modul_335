@@ -26,14 +26,13 @@ public class LauncherActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
 
-        Intent intent = new Intent(this, OtherBLa.class);
-        startActivity(intent);
+
 
         //setContentView(R.layout.launcher_activity);
 
 
 
-        /*
+
         viewPager = findViewById(R.id.viewpager);
         setupFragmentPager(viewPager);
 
@@ -46,7 +45,7 @@ public class LauncherActivity extends AppCompatActivity
 
 
         Record record = new Record(fragment, this);
-        */
+
     }
 
 

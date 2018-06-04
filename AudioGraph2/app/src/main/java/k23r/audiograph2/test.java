@@ -8,25 +8,19 @@ import android.view.View;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Path;
-import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.LinearLayout;
-
 
 
 public class test extends AppCompatActivity {
 
     View mView;
-    private Paint mPaint;
+    private Paint paintGreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +31,22 @@ public class test extends AppCompatActivity {
         layout.addView(mView, new LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
-        init();
+
     }
 
-    private void init() {
-        mPaint = new Paint();
-        mPaint.setDither(true);
-        mPaint.setColor(0xFFFFFF00);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPaint.setStrokeWidth(3);
+
+
+
+
+    private Paint getPaint(int color) {
+        Paint p = new Paint();
+        p.setDither(true);
+        p.setColor(color);
+        p.setStyle(Paint.Style.STROKE);
+        p.setStrokeJoin(Paint.Join.ROUND);
+        p.setStrokeCap(Paint.Cap.ROUND);
+        p.setStrokeWidth(3);
+        return p;
     }
 
     class DrawingView extends View {
@@ -65,17 +64,28 @@ public class test extends AppCompatActivity {
 
         private ArrayList<PathWithPaint> _graphics1 = new ArrayList<PathWithPaint>();
 
+        public void Draw(float x, float y)
+        {
+            PathWithPaint pp = new PathWithPaint();
+            mCanvas.drawPath(path, paintGreen);
+            path.lineTo(x, y);
+            pp.setPath(path);
+            pp.setmPaint(paintGreen);
+            _graphics1.add(pp);
+            invalidate();
+        }
+
         @Override
         public boolean onTouchEvent(MotionEvent event) {
             PathWithPaint pp = new PathWithPaint();
-            mCanvas.drawPath(path, mPaint);
+            mCanvas.drawPath(path, paintGreen);
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 path.moveTo(event.getX(), event.getY());
                 path.lineTo(event.getX(), event.getY());
             } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
                 path.lineTo(event.getX(), event.getY());
                 pp.setPath(path);
-                pp.setmPaint(mPaint);
+                pp.setmPaint(paintGreen);
                 _graphics1.add(pp);
             }
             invalidate();

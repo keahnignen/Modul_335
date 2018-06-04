@@ -14,14 +14,18 @@
         <activity
             android:name=".LauncherActivity"
             android:screenOrientation="landscape">
+        </activity>
+        <activity android:name=".fragments.OtherBLa">
+
+
+        </activity>
+        <activity android:name=".test">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OtherBLa" />
-        <activity android:name=".test"></activity>
     </application>
 
 </manifest>

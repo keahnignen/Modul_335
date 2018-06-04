@@ -1,20 +1,28 @@
-package k23r.audiograph2;
+package k23r.audiograph2.fragments;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import k23r.audiograph2.R;
 
 public class OtherBLa extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new MyView(this));
+        setContentView(R.layout.activity_other_bla);
+        ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.draw);
+        View  mView = new MyView(this);
+        layout.addView(mView, new ViewGroup.LayoutParams(500, 500));
     }
 
 
