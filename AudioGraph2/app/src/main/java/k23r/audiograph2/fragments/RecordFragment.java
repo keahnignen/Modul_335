@@ -38,21 +38,27 @@ public class RecordFragment extends Fragment
 
 
 
-
         return(inflater.inflate(R.layout.record_fragment, container, false));
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+        final Button button = getView().findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), test.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        final Button button = getView().findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), OtherBLa.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public LineGraphSeries<DataPoint> badSeries = new LineGraphSeries<DataPoint>();
@@ -122,16 +128,10 @@ public class RecordFragment extends Fragment
       if (createtAndFirstTime)
       {
           createtAndFirstTime = false;
-          //View v = this.getView().findViewById(R.id.view);
-
-          //series.setDrawBackground(true);
-          //badSeries.setDrawBackground(true);
-          badSeries.setColor(Color.RED);
           series.setColor(Color.GREEN);
           SetGraph();
           GraphView graphView = (GraphView) getView().findViewById(R.id.graph);
           graphView.addSeries(series);
-          graphView.addSeries(badSeries);
       }
     }
 

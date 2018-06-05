@@ -1,4 +1,4 @@
-package k23r.audiograph2;
+package k23r.audiograph2.fragments;
 
 import android.graphics.Paint;
 import android.support.constraint.ConstraintLayout;
@@ -16,26 +16,40 @@ import android.graphics.Path;
 import android.view.MotionEvent;
 import android.view.ViewGroup.LayoutParams;
 
+import k23r.audiograph2.PathWithPaint;
+import k23r.audiograph2.R;
+
 
 public class test extends AppCompatActivity {
 
     View mView;
+    DrawingView mDrawView;
     private Paint paintGreen;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         ConstraintLayout layout = (ConstraintLayout) findViewById(R.id.myDrawing);
-        mView = new DrawingView(this);
-        layout.addView(mView, new LayoutParams(
+        mDrawView = new DrawingView(this);
+        layout.addView(mDrawView, new LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
+        generateRandomNumber();
+        paintGreen = getPaint(Color.GREEN);
 
     }
 
+    private void generateRandomNumber() {
+
+        for (int i = 0; i < 100; i++) {
+            int randomNum = 2 + (int)(Math.random() * 100);
+            mDrawView.Draw(i, randomNum);
+        }
 
 
+    }
 
 
     private Paint getPaint(int color) {
@@ -77,6 +91,7 @@ public class test extends AppCompatActivity {
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
+            /*
             PathWithPaint pp = new PathWithPaint();
             mCanvas.drawPath(path, paintGreen);
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -89,7 +104,9 @@ public class test extends AppCompatActivity {
                 _graphics1.add(pp);
             }
             invalidate();
+                        */
             return true;
+
         }
 
         @Override
