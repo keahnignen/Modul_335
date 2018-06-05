@@ -15,7 +15,9 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import k23r.audiograph2.R;
 
@@ -50,19 +52,34 @@ public class RecordFragment extends Fragment
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), test.class);
+                intent.putExtra("array", toArray(swag));
                 startActivity(intent);
             }
         });
 
     }
 
+    private float[] toArray(List<Float> swag)
+    {
+        float[] floats = new float[swag.size()];
+        int i = 0;
+
+        for (float f : swag)
+        {
+            floats[i] = f;
+            i++;
+        }
+        return floats;
+    }
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    public LineGraphSeries<DataPoint> badSeries = new LineGraphSeries<DataPoint>();
     public LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
+    public List<Float> swag = new ArrayList<Float>();
 
 
     public void SetGraph()
@@ -112,18 +129,8 @@ public class RecordFragment extends Fragment
 
     public void addDatapoint(float frequency, boolean b, int i, boolean b1) {
 
-
-        if (frequency < 1000 && frequency > 500 )
-        {
-            series.appendData(new DataPoint(new Date(), frequency), false, 50, false);
-
-        }
-        else
-        {
-            badSeries.appendData(new DataPoint(new Date(), frequency), false, 100, false);
-        }
-
-
+        swag.add(frequency);
+    series.appendData(new DataPoint(new Date(), frequency), false, 50, false);
 
       if (createtAndFirstTime)
       {
