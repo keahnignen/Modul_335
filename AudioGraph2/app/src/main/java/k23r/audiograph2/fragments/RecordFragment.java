@@ -11,10 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,11 +25,11 @@ import k23r.audiograph2.R;
 
 public class RecordFragment extends Fragment
 {
-    private boolean createtAndFirstTime = false;
+    private boolean createdAndFirstTime = false;
 
-    private Activity a;
-    private OtherBLa b;
-
+    private LineGraphSeries<DataPoint> liveGraphSeries = new LineGraphSeries<DataPoint>();
+    private List<Float> pointsForStore = new ArrayList<Float>();
+    private Activity activity;
 
     public RecordFragment() {}
 
@@ -36,10 +38,7 @@ public class RecordFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
 
-        createtAndFirstTime = true;
-
-
-
+        createdAndFirstTime = true;
         return(inflater.inflate(R.layout.record_fragment, container, false));
     }
 
@@ -51,8 +50,8 @@ public class RecordFragment extends Fragment
         final Button button = getView().findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), test.class);
-                intent.putExtra("array", toArray(swag));
+                Intent intent = new Intent(getActivity(), StaticGraph.class);
+                intent.putExtra("array", toArray(pointsForStore));
                 startActivity(intent);
             }
         });
@@ -78,17 +77,16 @@ public class RecordFragment extends Fragment
         super.onCreate(savedInstanceState);
     }
 
-    public LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
-    public List<Float> swag = new ArrayList<Float>();
 
 
-    public void SetGraph()
+
+    private void setGraph()
     {
         GraphView graphView = (GraphView) getView().findViewById(R.id.graph);
 
         /*
-        for (FrequencyPoint fp: rec.swag) {
-            series.appendData(new DataPoint(fp.date, fp.frequency), true, rec.swag.size(), true);
+        for (FrequencyPoint fp: rec.pointsForStore) {
+            liveGraphSeries.appendData(new DataPoint(fp.date, fp.frequency), true, rec.pointsForStore.size(), true);
         }
         */
 
@@ -109,13 +107,13 @@ public class RecordFragment extends Fragment
         */
 
 
-         /*
+
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMinimumFractionDigits(13);
         nf.setMinimumIntegerDigits(20);
 
         graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(nf, nf));
-*/
+
 
 /*
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graphView);
@@ -124,21 +122,21 @@ public class RecordFragment extends Fragment
         graphView.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
 */
-        graphView.addSeries(series);
+        graphView.addSeries(liveGraphSeries);
     }
 
     public void addDatapoint(float frequency, boolean b, int i, boolean b1) {
 
-        swag.add(frequency);
-    series.appendData(new DataPoint(new Date(), frequency), false, 50, false);
+        pointsForStore.add(frequency);
+        liveGraphSeries.appendData(new DataPoint(new Date(), frequency), false, 50, false);
 
-      if (createtAndFirstTime)
+      if (createdAndFirstTime)
       {
-          createtAndFirstTime = false;
-          series.setColor(Color.GREEN);
-          SetGraph();
+          createdAndFirstTime = false;
+          liveGraphSeries.setColor(Color.GREEN);
+          setGraph();
           GraphView graphView = (GraphView) getView().findViewById(R.id.graph);
-          graphView.addSeries(series);
+          graphView.addSeries(liveGraphSeries);
       }
     }
 

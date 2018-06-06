@@ -16,39 +16,39 @@ public class AudioPermission implements ActivityCompat.OnRequestPermissionsResul
     final int MY_PERMISSIONS_RECORD_AUDIO = 1;
 
 
-    private Activity a;
-    private Record r;
+    private Activity activity;
+    private Record record;
 
-    public AudioPermission(Activity a, Record r) {
-        this.a = a;
-        this.r = r;
+    public AudioPermission(Activity activity, Record record) {
+        this.activity = activity;
+        this.record = record;
         requestAudioPermissions();
 
     }
 
     boolean requestAudioPermissions() {
-        if (ContextCompat.checkSelfPermission(a,
+        if (ContextCompat.checkSelfPermission(activity,
                 Manifest.permission.RECORD_AUDIO)
                 != PackageManager.PERMISSION_GRANTED) {
 
             //When permission is not granted by user, show them message why this permission is needed.
-            if (ActivityCompat.shouldShowRequestPermissionRationale(a, Manifest.permission.RECORD_AUDIO)) {
-                Toast.makeText(a, "Please grant permissions to record audio", Toast.LENGTH_LONG).show();
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.RECORD_AUDIO)) {
+                Toast.makeText(activity, "Please grant permissions to record audio", Toast.LENGTH_LONG).show();
 
                 //Give user option to still opt-in the permissions
-                ActivityCompat.requestPermissions(a, new String[]{Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_RECORD_AUDIO);
+                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_RECORD_AUDIO);
 
             } else {
                 // Show user dialog to grant permission to record audio
-                ActivityCompat.requestPermissions(a, new String[]{Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_RECORD_AUDIO);
+                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.RECORD_AUDIO}, MY_PERMISSIONS_RECORD_AUDIO);
             }
         }
         //If permission is granted, then go ahead recording audio
 
-        else if (ContextCompat.checkSelfPermission(a,
+        else if (ContextCompat.checkSelfPermission(activity,
                 Manifest.permission.RECORD_AUDIO)
                 == PackageManager.PERMISSION_GRANTED) {
-            r.StraitCopyied();
+            record.startRecord();
             return true;
         }
         return false;
@@ -56,16 +56,15 @@ public class AudioPermission implements ActivityCompat.OnRequestPermissionsResul
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        Toast.makeText(a, "Swag3", Toast.LENGTH_LONG).show();
         switch (requestCode) {
             case MY_PERMISSIONS_RECORD_AUDIO: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    r.StraitCopyied();
+                    record.startRecord();
                 } else {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
-                    Toast.makeText(a, "Permissions Denied to record audio", Toast.LENGTH_LONG).show();
+                    Toast.makeText(activity, "Permissions Denied to record audio", Toast.LENGTH_LONG).show();
                 }
 
             }

@@ -20,11 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fragments.OtherBLa">
-
-
-        </activity>
-        <activity android:name=".fragments.test">
+        <activity android:name=".fragments.StaticGraph">
 
         </activity>
     </application>
