@@ -9,7 +9,7 @@
 
 
     <ToggleButton
-        android:id="@+id/recordBtn"
+        android:id="@+id/recordBtn2"
         android:layout_width="83dp"
         android:layout_height="49dp"
         android:layout_marginBottom="8dp"
@@ -26,7 +26,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.78" />
 
-
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
         android:layout_width="319dp"
@@ -37,6 +36,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Display Graph"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914" />
 
 
 </android.support.constraint.ConstraintLayout>
