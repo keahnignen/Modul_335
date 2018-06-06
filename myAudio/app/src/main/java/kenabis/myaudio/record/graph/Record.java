@@ -59,7 +59,11 @@ public class Record {
         //pitchText.setText("" + pitchInHz);
         Date d = new Date();
         //rec.swag.put(d.toString(), pitchInHz);
+<<<<<<< HEAD
         //  fragment.addDatapoint(pitchInHz, false, 100, false);
+=======
+        //fragment.addDatapoint(pitchInHz, false, 100, false);
+>>>>>>> 8d3d3d276a7f3355273e209245c710f120f48d37
         //rec.swag.add(new FrequencyPoint(new Date(), pitchInHz));
         //bizzli.add(pitchInHz);
     }
