@@ -34,7 +34,7 @@ public class Record {
     }
 
 
-    void startRecord() {
+    public void startRecord() {
         AudioDispatcher dispatcher = AudioDispatcherFactory.fromDefaultMicrophone(22050, 1024, 0);
         PitchDetectionHandler pdh = new PitchDetectionHandler() {
             @Override
