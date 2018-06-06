@@ -24,9 +24,8 @@ public class Record {
         this.activity = activity;
         this.fragment = fragment;
         rec = new Recordation();
-        AudioPermission audioPermission = new AudioPermission(activity, this);
-    }
 
+    }
 
     public void startRecord() {
         AudioDispatcher dispatcher = AudioDispatcherFactory.fromDefaultMicrophone(22050, 1024, 0);
@@ -53,16 +52,9 @@ public class Record {
     }
 
     private void processPitch(float pitchInHz) {
-        //TextView pitchText = (TextView) fragment.findViewById(R.id.lblFrequency);
-        //TextView noteText = (TextView) fragment.findViewById(R.id.lblNote);
-
-        //pitchText.setText("" + pitchInHz);
         Date d = new Date();
-        //rec.swag.put(d.toString(), pitchInHz);
-        //  fragment.addDatapoint(pitchInHz, false, 100, false);
-        //fragment.addDatapoint(pitchInHz, false, 100, false);
-        //rec.swag.add(new FrequencyPoint(new Date(), pitchInHz));
-        //bizzli.add(pitchInHz);
+        fragment.addDatapoint(pitchInHz, false, 100, false);
+
     }
 
 }

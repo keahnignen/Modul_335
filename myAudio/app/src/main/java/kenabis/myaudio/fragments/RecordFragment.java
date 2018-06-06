@@ -1,6 +1,7 @@
 package kenabis.myaudio.fragments;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -27,6 +28,7 @@ import java.util.List;
 
 import kenabis.myaudio.R;
 import kenabis.myaudio.record.audio.AudioRecorder;
+import kenabis.myaudio.record.graph.Record;
 import kenabis.myaudio.record.graph.StaticGraph;
 
 public class RecordFragment extends Fragment
@@ -38,28 +40,18 @@ public class RecordFragment extends Fragment
     private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
     private boolean isGranted = false;
 
+    private Record record;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.record_fragment, container, false);
-
         this.requestAudioPermissions();
-
+        createdAndFirstTime = true;
         return(rootView);
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        final Button button = getView().findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), StaticGraph.class);
-                intent.putExtra("array", toArray(pointsForStore));
-                startActivity(intent);
-            }
-        });
-    }
 
     private float[] toArray(List<Float> swag)
     {
@@ -100,6 +92,7 @@ public class RecordFragment extends Fragment
         else if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED)
         {
             //  permission granted, record now
+            this.record = new Record(this, getActivity());
             this.recorder = new AudioRecorder();
             this.isGranted = true;
         }
@@ -112,6 +105,7 @@ public class RecordFragment extends Fragment
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 {
                     //  permission granted, record now
+                    this.record = new Record(this,  getActivity());
                     this.recorder = new AudioRecorder();
                     this.isGranted = true;
                 }
@@ -138,11 +132,16 @@ public class RecordFragment extends Fragment
             if (this.recorder.isRecording)
             {
                 this.recorder.stopRecording();
-
+                Intent intent = new Intent(getActivity(), StaticGraph.class);
+                intent.putExtra("array", toArray(pointsForStore));
+                startActivity(intent);
             }
             else
             {
-                this.recorder.startRecording();
+                //this.recorder.startRecording();
+                this.record.startRecord();
+
+
             }
         }
     }
@@ -161,7 +160,7 @@ public class RecordFragment extends Fragment
         }
         */
 
-        /*
+
         graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
 
             @Override
@@ -171,19 +170,11 @@ public class RecordFragment extends Fragment
                     return super.formatLabel(value, isValueX);
                 } else {
                     // show currency for y values
-                    return super.formatLabel(value, isValueX) + " €";
+                    return super.formatLabel(value, isValueX) + " Hz";
                 }
             }
         });
-        */
 
-
-
-        NumberFormat nf = NumberFormat.getInstance();
-        nf.setMinimumFractionDigits(13);
-        nf.setMinimumIntegerDigits(20);
-
-        graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(nf, nf));
 
 
 /*
@@ -212,5 +203,4 @@ public class RecordFragment extends Fragment
     }
 
 
-    //  fragment.addDatapoint(pitchInHz, false, 100, false);
 }

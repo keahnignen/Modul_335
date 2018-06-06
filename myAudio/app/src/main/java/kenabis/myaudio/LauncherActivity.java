@@ -10,6 +10,7 @@ import android.view.View;
 import kenabis.myaudio.adapter.FragmentAdapter;
 import kenabis.myaudio.fragments.GalleryFragment;
 import kenabis.myaudio.fragments.RecordFragment;
+import kenabis.myaudio.record.graph.Record;
 
 public class LauncherActivity extends AppCompatActivity
 {
@@ -34,6 +35,7 @@ public class LauncherActivity extends AppCompatActivity
         this.gallery = new GalleryFragment();
 
         this.adapter.addFragment(this.record);
+
         this.adapter.addTitle(this.record.getName());
         this.adapter.addFragment(this.gallery);
         this.adapter.addTitle(this.gallery.getName());
@@ -44,6 +46,7 @@ public class LauncherActivity extends AppCompatActivity
         //  setup TabLayout with pager
         TabLayout tablayout = (TabLayout) findViewById(R.id.tabLayout);
         tablayout.setupWithViewPager(this.pager);
+
     }
 
     @Override
