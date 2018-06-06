@@ -27,6 +27,9 @@
             android:name=".PlayActivity"
             android:parentActivityName=".LauncherActivity">
         </activity>
+        <activity
+            android:name=".StaticGraph">
+        </activity>
     </application>
 
 </manifest>

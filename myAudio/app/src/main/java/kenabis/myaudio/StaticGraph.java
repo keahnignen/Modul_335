@@ -1,4 +1,4 @@
-package kenabis.myaudio.record.graph;
+package kenabis.myaudio;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,6 +16,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import kenabis.myaudio.record.graph.PathWithPaint;
 import kenabis.myaudio.R;
@@ -30,11 +31,7 @@ public class StaticGraph extends AppCompatActivity {
 
     public StaticGraph()
     {
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        this.height = size.x;
-        this.width = size.y;
+
     }
 
     @Override
@@ -48,6 +45,15 @@ public class StaticGraph extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT));
         Bundle extras = getIntent().getExtras();
         float[] array = extras.getFloatArray("array");
+
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+
+        this.height = size.x;
+        this.width = size.y;
+
         drawArray(array);
     }
 
@@ -56,19 +62,23 @@ public class StaticGraph extends AppCompatActivity {
     private static final int YELLOW_TOLERANCE = 2;
     private static final int GREEN_TOLERANCE = 1;
 
-    private final float width;
-    private final float height;
+
+
+    private float width;
+    private float height;
 
     private void drawArray(float[] array) {
 
+        /*
         for (int i = 0; i < 100; i++)
         {
             mDrawView.Draw(height / 8000 * 6000, width / array.length * i, Color.GREEN);
         }
+        */
 
         for (int i = 0; i < array.length; i++) {
             float s = array[i];
-            mDrawView.Draw(height / 8000 * array[i], width / array.length * i + 100, Color.YELLOW);
+            mDrawView.Draw(height / 8000 * array[i], width / array.length * i, Color.YELLOW);
         }
 
     }
@@ -133,6 +143,8 @@ public class StaticGraph extends AppCompatActivity {
             this.setBackgroundColor(Color.BLACK);
         }
 
+        private List<List<PathWithPaint>> _lol = new ArrayList();
+
         private ArrayList<PathWithPaint> _graphics1 = new ArrayList<PathWithPaint>();
 
         public Integer oldColor;
@@ -149,18 +161,22 @@ public class StaticGraph extends AppCompatActivity {
             }
 
 
-            //mCanvas.drawLine(oldx, oldy, x, y, getPaint(color));
-            mCanvas.drawPoint(x, y, getPaint(color));
+            /*
+            mCanvas.drawLine(oldx, oldy, x, y, getPaint(color));
+
             oldx = x;
             oldy = y;
-/*
+            */
+
+
 
             paintGreen = getPaint(color);
             PathWithPaint pp = new PathWithPaint();
 
+            //mCanvas.drawPoint(x, y, getPaint(color));
             StartDraw(x,y);
             ContinueDraw(x, y, pp, paintGreen);
-*/
+
             /*
             if (oldColor == null || oldColor != color)
             {
@@ -211,6 +227,7 @@ public class StaticGraph extends AppCompatActivity {
             path = new Path();
             path.moveTo(x, y);
             path.lineTo(x, y);
+            _lol.add(new ArrayList<PathWithPaint>());
         }
 
         private void ContinueDraw(float x, float y, PathWithPaint pp, Paint color)

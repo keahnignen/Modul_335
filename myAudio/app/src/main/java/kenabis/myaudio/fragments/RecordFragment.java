@@ -1,11 +1,9 @@
 package kenabis.myaudio.fragments;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -13,7 +11,6 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
@@ -21,7 +18,6 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +25,7 @@ import java.util.List;
 import kenabis.myaudio.R;
 import kenabis.myaudio.record.audio.AudioRecorder;
 import kenabis.myaudio.record.graph.Record;
-import kenabis.myaudio.record.graph.StaticGraph;
+import kenabis.myaudio.StaticGraph;
 
 public class RecordFragment extends Fragment
 {
@@ -121,6 +117,9 @@ public class RecordFragment extends Fragment
         }
     }
 
+
+    private boolean startet = false;
+
     public void recordClick(View btn)
     {
         if (!this.isGranted)
@@ -129,8 +128,9 @@ public class RecordFragment extends Fragment
         }
         else
         {
-            if (this.recorder.isRecording)
+            if (startet)
             {
+                startet = !startet;
                 this.recorder.stopRecording();
                 Intent intent = new Intent(getActivity(), StaticGraph.class);
                 intent.putExtra("array", toArray(pointsForStore));
@@ -138,6 +138,7 @@ public class RecordFragment extends Fragment
             }
             else
             {
+                startet = !startet;
                 //this.recorder.startRecording();
                 this.record.startRecord();
 
