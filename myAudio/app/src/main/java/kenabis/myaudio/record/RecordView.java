@@ -1,4 +1,4 @@
-package k23r.audiograph2.Record;
+package kenabis.myaudio.record;
 
 import android.content.Context;
 import android.graphics.Canvas;

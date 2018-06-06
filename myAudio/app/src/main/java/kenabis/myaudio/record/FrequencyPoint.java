@@ -1,4 +1,4 @@
-package k23r.audiograph2.Record;
+package kenabis.myaudio.record;
 
 import java.util.Date;
 
