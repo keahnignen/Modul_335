@@ -17,8 +17,8 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
-import k23r.audiograph2.PathWithPaint;
-import k23r.audiograph2.R;
+import kenabis.myaudio.record.PathWithPaint;
+import kenabis.myaudio.R;
 
 
 public class StaticGraph extends AppCompatActivity {
