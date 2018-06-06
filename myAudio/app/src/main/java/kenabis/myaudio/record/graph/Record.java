@@ -1,14 +1,8 @@
-package k23r.audiograph2.Record;
+package kenabis.myaudio.record.graph;
 
 import android.app.Activity;
-import android.widget.Toast;
 
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import be.tarsos.dsp.AudioDispatcher;
 import be.tarsos.dsp.AudioEvent;
@@ -17,7 +11,7 @@ import be.tarsos.dsp.io.android.AudioDispatcherFactory;
 import be.tarsos.dsp.pitch.PitchDetectionHandler;
 import be.tarsos.dsp.pitch.PitchDetectionResult;
 import be.tarsos.dsp.pitch.PitchProcessor;
-import k23r.audiograph2.fragments.RecordFragment;
+import kenabis.myaudio.fragments.RecordFragment;
 
 public class Record {
 

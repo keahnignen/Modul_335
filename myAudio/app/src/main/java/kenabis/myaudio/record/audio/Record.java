@@ -1,4 +1,4 @@
-package kenabis.myaudio.record;
+package kenabis.myaudio.record.audio;
 
 public class Record
 {

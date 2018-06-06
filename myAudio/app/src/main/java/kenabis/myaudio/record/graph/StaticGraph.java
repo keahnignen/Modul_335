@@ -1,4 +1,4 @@
-package kenabis.myaudio.fragments;
+package kenabis.myaudio.record.graph;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
-import kenabis.myaudio.record.PathWithPaint;
+import kenabis.myaudio.record.graph.PathWithPaint;
 import kenabis.myaudio.R;
 
 

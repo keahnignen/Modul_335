@@ -1,4 +1,4 @@
-package kenabis.myaudio.record;
+package kenabis.myaudio.record.graph;
 
 import android.Manifest;
 import android.app.Activity;

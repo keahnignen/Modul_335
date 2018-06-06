@@ -15,7 +15,7 @@ import java.util.List;
 import kenabis.myaudio.PlayActivity;
 import kenabis.myaudio.R;
 import kenabis.myaudio.adapter.RecyclerAdapter;
-import kenabis.myaudio.record.Record;
+import kenabis.myaudio.record.audio.Record;
 
 public class GalleryFragment extends Fragment
 {

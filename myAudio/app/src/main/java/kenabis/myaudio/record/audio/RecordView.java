@@ -1,4 +1,4 @@
-package kenabis.myaudio.record;
+package kenabis.myaudio.record.audio;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,6 +8,8 @@ import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import kenabis.myaudio.record.Pt;
 
 public class RecordView extends View{
 

@@ -9,11 +9,10 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import kenabis.myaudio.R;
-import kenabis.myaudio.record.AudioRecorder;
+import kenabis.myaudio.record.audio.AudioRecorder;
 
 public class RecordFragment extends Fragment
 {
@@ -104,4 +103,6 @@ public class RecordFragment extends Fragment
             }
         }
     }
+
+    fragment.addDatapoint(pitchInHz, false, 100, false);
 }

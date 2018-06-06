@@ -1,6 +1,5 @@
-package kenabis.myaudio.record;
+package kenabis.myaudio.record.audio;
 
-import android.content.res.AssetManager;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;

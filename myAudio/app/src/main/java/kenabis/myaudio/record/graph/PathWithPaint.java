@@ -1,4 +1,4 @@
-package kenabis.myaudio.record;
+package kenabis.myaudio.record.graph;
 
 import android.graphics.Paint;
 import android.graphics.Path;

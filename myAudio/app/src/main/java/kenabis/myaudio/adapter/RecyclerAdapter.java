@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import kenabis.myaudio.R;
-import kenabis.myaudio.record.Record;
+import kenabis.myaudio.record.audio.Record;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>
 {
