@@ -104,5 +104,5 @@ public class RecordFragment extends Fragment
         }
     }
 
-    fragment.addDatapoint(pitchInHz, false, 100, false);
+    //  fragment.addDatapoint(pitchInHz, false, 100, false);
 }
