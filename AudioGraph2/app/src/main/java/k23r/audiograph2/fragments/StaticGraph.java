@@ -15,21 +15,27 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Path;
-import android.view.MotionEvent;
 import android.view.ViewGroup.LayoutParams;
 
 import k23r.audiograph2.PathWithPaint;
 import k23r.audiograph2.R;
 
 
-public class test extends AppCompatActivity {
+public class StaticGraph extends AppCompatActivity {
 
     View mView;
     DrawingView mDrawView;
     private Paint paintGreen;
-    private float[] array;
 
 
+    public StaticGraph()
+    {
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        this.height = size.x;
+        this.width = size.y;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,37 +47,24 @@ public class test extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT));
         Bundle extras = getIntent().getExtras();
-        array = extras.getFloatArray("array");
-
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        height = size.x;
-        width = size.y;
-
-        generateRandomNumber();
-
-
+        float[] array = extras.getFloatArray("array");
+        drawArray(array);
     }
 
 
 
-    private int yellowTolerance = 2;
-    private int greenTolerance = 1;
+    private static final int YELLOW_TOLERANCE = 2;
+    private static final int GREEN_TOLERANCE = 1;
 
-    private float width;
-    private float height;
+    private final float width;
+    private final float height;
 
-    private void generateRandomNumber() {
+    private void drawArray(float[] array) {
 
         for (int i = 0; i < 100; i++)
         {
             mDrawView.Draw(height / 8000 * 6000, width / array.length * i, Color.GREEN);
         }
-
-
-
 
         for (int i = 0; i < array.length; i++) {
             float s = array[i];
@@ -86,11 +79,11 @@ public class test extends AppCompatActivity {
     {
         for (double pitch : mPitchesIn4)
         {
-            if (isBetweenTolerance(pitch, frequency, greenTolerance))
+            if (isBetweenTolerance(pitch, frequency, GREEN_TOLERANCE))
             {
                return Color.GREEN;
             }
-            if (isBetweenTolerance(pitch, frequency, yellowTolerance))
+            if (isBetweenTolerance(pitch, frequency, YELLOW_TOLERANCE))
             {
                 return Color.YELLOW;
             }
@@ -104,7 +97,7 @@ public class test extends AppCompatActivity {
         for (double j = 1; j < 256; j = j * 2) {
             counter++;
             double exactPitch = perfectPitchInHz / j ;
-            double toleranceInHz = exactPitch / 100 * this.greenTolerance;
+            double toleranceInHz = exactPitch / 100 * this.GREEN_TOLERANCE;
             if (frequency < exactPitch+toleranceInHz && frequency > exactPitch-toleranceInHz){
                 return true;
             }

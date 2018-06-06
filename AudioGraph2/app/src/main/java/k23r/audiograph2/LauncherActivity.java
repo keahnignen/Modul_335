@@ -56,10 +56,6 @@ public class LauncherActivity extends AppCompatActivity
 
         //Record record = new Record(fragment, this);
 
-
-
-
-
     }
 
 

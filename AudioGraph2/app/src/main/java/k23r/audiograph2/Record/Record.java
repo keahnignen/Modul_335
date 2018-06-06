@@ -25,16 +25,16 @@ public class Record {
     private Activity activity;
     private Recordation rec;
 
-    public Record(RecordFragment a, Activity ac)
+    public Record(RecordFragment fragment, Activity activity)
     {
-        this.activity = ac;
-        this.fragment = a;
+        this.activity = activity;
+        this.fragment = fragment;
         rec = new Recordation();
-        AudioPermission ap = new AudioPermission(ac, this);
+        AudioPermission audioPermission = new AudioPermission(activity, this);
     }
 
 
-    void StraitCopyied() {
+    void startRecord() {
         AudioDispatcher dispatcher = AudioDispatcherFactory.fromDefaultMicrophone(22050, 1024, 0);
         PitchDetectionHandler pdh = new PitchDetectionHandler() {
             @Override
@@ -58,9 +58,6 @@ public class Record {
 
     }
 
-
-    Date d = new Date();
-
     private void processPitch(float pitchInHz) {
         //TextView pitchText = (TextView) fragment.findViewById(R.id.lblFrequency);
         //TextView noteText = (TextView) fragment.findViewById(R.id.lblNote);
@@ -68,17 +65,9 @@ public class Record {
         //pitchText.setText("" + pitchInHz);
         Date d = new Date();
         //rec.swag.put(d.toString(), pitchInHz);
-        index++;
         fragment.addDatapoint(pitchInHz, false, 100, false);
         //rec.swag.add(new FrequencyPoint(new Date(), pitchInHz));
         //bizzli.add(pitchInHz);
     }
-
-    private List<Float> bizzli =  new ArrayList<>();
-
-    private int index= 0;
-
-
-
 
 }
