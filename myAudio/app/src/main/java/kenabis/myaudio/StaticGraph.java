@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kenabis.myaudio.record.graph.PathWithPaint;
-import kenabis.myaudio.R;
+import kenabis.myaudio.record.graph.PointWithColor;
 
 
 public class StaticGraph extends AppCompatActivity {
@@ -59,7 +59,7 @@ public class StaticGraph extends AppCompatActivity {
 
 
 
-    private static final int YELLOW_TOLERANCE = 2;
+    private static final int YELLOW_TOLERANCE = 5;
     private static final int GREEN_TOLERANCE = 1;
 
 
@@ -69,29 +69,26 @@ public class StaticGraph extends AppCompatActivity {
 
     private void drawArray(float[] array) {
 
-        /*
-        for (int i = 0; i < 100; i++)
-        {
-            mDrawView.Draw(height / 8000 * 6000, width / array.length * i, Color.GREEN);
-        }
-        */
+
+
 
         for (int i = 0; i < array.length; i++) {
             float s = array[i];
-            mDrawView.Draw(height / 8000 * array[i], width / array.length * i, Color.YELLOW);
+            mDrawView.Draw(height / 2000 * array[i], width / array.length * i, getColor(array[i]));
         }
 
     }
 
-    double [] mPitchesIn4 = {4186.01, 4434.92, 4698.63, 4978.03, 5274.04, 5587.65, 5919.91, 6271.93, 6644.88, 7040.00, 7458.62, 7902.13};
+    double [] mPitchIn8 = {4186.01, 4434.92, 4698.63, 4978.03, 5274.04, 5587.65, 5919.91, 6271.93, 6644.88, 7040.00, 7458.62, 7902.13};
 
     private int getColor(float frequency)
     {
-        for (double pitch : mPitchesIn4)
+        if (frequency == -1) return Color.BLACK;
+        for (double pitch : mPitchIn8)
         {
             if (isBetweenTolerance(pitch, frequency, GREEN_TOLERANCE))
             {
-               return Color.GREEN;
+                return Color.GREEN;
             }
             if (isBetweenTolerance(pitch, frequency, YELLOW_TOLERANCE))
             {
@@ -119,14 +116,14 @@ public class StaticGraph extends AppCompatActivity {
     private Paint getPaint(int color) {
         Paint p = new Paint();
 
-        //p.setDither(true);
+        p.setDither(true);
 
-        p.setColor(color); /*
+        p.setColor(color);
         p.setStyle(Paint.Style.STROKE);
         p.setStrokeJoin(Paint.Join.ROUND);
         p.setStrokeCap(Paint.Cap.ROUND);
         p.setStrokeWidth(3);
-        */
+
         return p;
     }
 
@@ -143,9 +140,10 @@ public class StaticGraph extends AppCompatActivity {
             this.setBackgroundColor(Color.BLACK);
         }
 
-        private List<List<PathWithPaint>> _lol = new ArrayList();
 
-        private ArrayList<PathWithPaint> _graphics1 = new ArrayList<PathWithPaint>();
+        private List<PointWithColor> list = new ArrayList();
+
+        private ArrayList<PathWithPaint> paths = new ArrayList<PathWithPaint>();
 
         public Integer oldColor;
 
@@ -170,11 +168,12 @@ public class StaticGraph extends AppCompatActivity {
 
 
 
+            list.add(new PointWithColor((int)x, (int)y, color));
             paintGreen = getPaint(color);
             PathWithPaint pp = new PathWithPaint();
 
             //mCanvas.drawPoint(x, y, getPaint(color));
-            StartDraw(x,y);
+            //StartDraw(x,y);
             ContinueDraw(x, y, pp, paintGreen);
 
             /*
@@ -213,7 +212,7 @@ public class StaticGraph extends AppCompatActivity {
                 path.lineTo(event.getX(), event.getY());
                 pp.setPath(path);
                 pp.setmPaint(paintGreen);
-                _graphics1.add(pp);
+                paths.add(pp);
             }
             invalidate();
 
@@ -227,7 +226,6 @@ public class StaticGraph extends AppCompatActivity {
             path = new Path();
             path.moveTo(x, y);
             path.lineTo(x, y);
-            _lol.add(new ArrayList<PathWithPaint>());
         }
 
         private void ContinueDraw(float x, float y, PathWithPaint pp, Paint color)
@@ -235,17 +233,35 @@ public class StaticGraph extends AppCompatActivity {
             path.lineTo(x, y);
             pp.setPath(path);
             pp.setmPaint(color);
-            _graphics1.add(pp);
+            paths.add(pp);
         }
 
 
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            if (_graphics1.size() > 0) {
+            if (paths.size() > 0) {
+                /*
+                for (PathWithPaint pwp : paths)
+                {
+                    canvas.drawPath(pwp.getPath(), pwp.getmPaint());
+                }*/
+                float oldx = 0;
+                float oldy = 0;
+                for (PointWithColor pwp : list)
+                {
+                    canvas.drawLine(oldx, oldy, pwp.x, pwp.y, pwp.point);
+                    oldx = pwp.x;
+                    oldy = pwp.y;
+                    //canvas.drawPoint(pwp.x, pwp.y, pwp.point);
+                }
+
+
+                /*
                 canvas.drawPath(
-                        _graphics1.get(_graphics1.size() - 1).getPath(),
-                        _graphics1.get(_graphics1.size() - 1).getmPaint());
+                        paths.get(paths.size() - 1).getPath(),
+                        paths.get(paths.size() - 1).getmPaint());
+                        */
             }
         }
     }

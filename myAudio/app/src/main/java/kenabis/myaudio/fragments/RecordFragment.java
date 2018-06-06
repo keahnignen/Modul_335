@@ -49,12 +49,12 @@ public class RecordFragment extends Fragment
     }
 
 
-    private float[] toArray(List<Float> swag)
+    private float[] toArray(List<Float> list)
     {
-        float[] floats = new float[swag.size()];
+        float[] floats = new float[list.size()];
         int i = 0;
 
-        for (float f : swag)
+        for (float f : list)
         {
             floats[i] = f;
             i++;
@@ -139,8 +139,8 @@ public class RecordFragment extends Fragment
             else
             {
                 startet = !startet;
-                //this.recorder.startRecording();
                 this.record.startRecord();
+                this.recorder.startRecording();
 
 
             }
